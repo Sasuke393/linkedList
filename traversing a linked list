@@ -1,0 +1,66 @@
+//creating a linked lists
+#include<iostream>
+using namespace std;
+
+class Node
+{
+public:
+    int num;
+    Node *next;
+};
+
+Node *createlist(int n)
+{
+    Node *head = NULL; //store the first node address and will be returned.
+    Node *temp = NULL; //create different blocks of memory.
+    Node *mve = NULL; //move through the linked list.
+    for (int i=0; i<n; i++)
+    {
+        temp = new Node();
+        cout<<"Enter the integer in list "<<i+1<<endl;
+        cin>>temp->num;
+        temp->next = NULL;
+
+        if (head == NULL) //the list is empty.
+        {
+            head = temp;
+        }
+        else
+        {
+            mve = head;
+            while(mve->next != NULL)
+            {
+                mve = mve->next;
+            }
+            mve->next = temp;
+        }
+
+    }
+    return head;
+}
+
+void printlist(Node *p)
+{
+    Node *ptr = p;
+    cout<<"[";
+    while(ptr != NULL)
+    {
+        cout<<ptr->num<<" ";
+        ptr = ptr->next;
+    }
+    cout<<"]";
+
+}
+
+int main()
+{
+    int no{0};
+    cout<<"Enter the number of list you want to create?"<<endl;
+    cin>>no;
+    Node *start;
+    start = createlist(no);
+    cout<<"The linked list is"<<endl;
+    cout<<"-------------------------"<<endl;
+    printlist(start);
+    return 0;
+}
